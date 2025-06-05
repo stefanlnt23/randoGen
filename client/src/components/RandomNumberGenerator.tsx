@@ -81,7 +81,15 @@ export default function RandomNumberGenerator() {
     setHistory(newHistory);
   };
 
+  const triggerConfetti = () => {
+    setConfettiTrigger(prev => !prev);
+  };
+
   const checkForSpecialNumbers = (numbers: number[]) => {
+    // Always trigger confetti when numbers are generated
+    triggerConfetti();
+    
+    // Check for extra special patterns for enhanced effects
     const specialNums = [7, 13, 21, 42, 69, 77, 88, 99, 111, 777, 888, 999];
     const hasSpecial = numbers.some(num => specialNums.includes(num));
     const hasRepeatingDigits = numbers.some(num => {
@@ -91,17 +99,10 @@ export default function RandomNumberGenerator() {
     const hasSequence = numbers.length > 1 && numbers.every((num, index) => 
       index === 0 || num === numbers[index - 1] + 1
     );
-    const allEven = numbers.every(num => num % 2 === 0);
-    const allOdd = numbers.every(num => num % 2 === 1);
     
-    // Trigger confetti for special numbers, repeating digits, sequences, or all even/odd
-    if (hasSpecial || hasRepeatingDigits || hasSequence || (numbers.length > 1 && (allEven || allOdd))) {
-      setConfettiTrigger(prev => !prev);
-    }
-    
-    // Also trigger confetti randomly for any generation (10% chance for extra fun)
-    if (Math.random() < 0.1) {
-      setConfettiTrigger(prev => !prev);
+    // Trigger additional confetti burst for really special patterns
+    if (hasSpecial || hasRepeatingDigits || hasSequence) {
+      setTimeout(() => triggerConfetti(), 500);
     }
   };
 
