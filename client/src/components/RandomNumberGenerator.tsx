@@ -46,8 +46,8 @@ export default function RandomNumberGenerator() {
     setActivePreset(preset.label);
   };
 
-  const handleDiceClick = (dice: typeof diceOptions[0]) => {
-    const result = generateNumbers({
+  const handleDiceClick = async (dice: typeof diceOptions[0]) => {
+    const result = await generateNumbers({
       type: 'dice',
       count: dice.count,
       sides: dice.sides
@@ -57,8 +57,8 @@ export default function RandomNumberGenerator() {
     checkForSpecialNumbers(result);
   };
 
-  const handleGenerate = () => {
-    const result = generateNumbers({
+  const handleGenerate = async () => {
+    const result = await generateNumbers({
       type: 'range',
       min,
       max,
@@ -276,7 +276,7 @@ export default function RandomNumberGenerator() {
                 ) : (
                   history.map((item, index) => (
                     <div key={index} className="flex justify-between items-center py-1">
-                      <span className="font-mono">{item.numbers.join(', ')}</span>
+                      <span className="font-mono">{Array.isArray(item.numbers) ? item.numbers.join(', ') : String(item.numbers)}</span>
                       <span className="text-xs opacity-75">{item.timestamp}</span>
                     </div>
                   ))
