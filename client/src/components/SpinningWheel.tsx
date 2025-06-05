@@ -4,14 +4,22 @@ interface SpinningWheelProps {
   isSpinning: boolean;
   min: number;
   max: number;
+  generatedNumbers: number[];
 }
 
-export default function SpinningWheel({ isSpinning, min, max }: SpinningWheelProps) {
+export default function SpinningWheel({ isSpinning, min, max, generatedNumbers }: SpinningWheelProps) {
   const [displayText, setDisplayText] = useState(`${min}-${max}`);
+  const [showNumbers, setShowNumbers] = useState(false);
 
   useEffect(() => {
-    setDisplayText(`${min}-${max}`);
-  }, [min, max]);
+    if (generatedNumbers && generatedNumbers.length > 0) {
+      setShowNumbers(true);
+      setDisplayText(generatedNumbers.join(', '));
+    } else {
+      setShowNumbers(false);
+      setDisplayText(`${min}-${max}`);
+    }
+  }, [generatedNumbers, min, max]);
 
   return (
     <div className="relative mb-8">
@@ -24,10 +32,15 @@ export default function SpinningWheel({ isSpinning, min, max }: SpinningWheelPro
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform rotate-45"></div>
-        <div className="relative z-10 text-white font-black text-2xl md:text-4xl opacity-60">
-          <div className={isSpinning ? '' : 'animate-spin-slow'}>
+        <div className="relative z-10 text-white font-black text-center px-4">
+          <div className={`${isSpinning ? '' : 'animate-spin-slow'} ${showNumbers ? 'text-xl md:text-2xl animate-number-pop' : 'text-2xl md:text-4xl opacity-60'}`}>
             {displayText}
           </div>
+          {showNumbers && (
+            <div className="text-xs md:text-sm opacity-75 mt-1">
+              {generatedNumbers.length > 1 ? `${generatedNumbers.length} numbers` : 'result'}
+            </div>
+          )}
         </div>
       </div>
       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-yellow-400">

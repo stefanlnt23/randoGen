@@ -84,8 +84,23 @@ export default function RandomNumberGenerator() {
   const checkForSpecialNumbers = (numbers: number[]) => {
     const specialNums = [7, 13, 21, 42, 69, 77, 88, 99, 111, 777, 888, 999];
     const hasSpecial = numbers.some(num => specialNums.includes(num));
+    const hasRepeatingDigits = numbers.some(num => {
+      const str = num.toString();
+      return str.length > 1 && str.split('').every(digit => digit === str[0]);
+    });
+    const hasSequence = numbers.length > 1 && numbers.every((num, index) => 
+      index === 0 || num === numbers[index - 1] + 1
+    );
+    const allEven = numbers.every(num => num % 2 === 0);
+    const allOdd = numbers.every(num => num % 2 === 1);
     
-    if (hasSpecial) {
+    // Trigger confetti for special numbers, repeating digits, sequences, or all even/odd
+    if (hasSpecial || hasRepeatingDigits || hasSequence || (numbers.length > 1 && (allEven || allOdd))) {
+      setConfettiTrigger(prev => !prev);
+    }
+    
+    // Also trigger confetti randomly for any generation (10% chance for extra fun)
+    if (Math.random() < 0.1) {
       setConfettiTrigger(prev => !prev);
     }
   };
@@ -238,7 +253,7 @@ export default function RandomNumberGenerator() {
         <div className="lg:col-span-2 flex flex-col items-center justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
           
           {/* Spinning Wheel Visual */}
-          <SpinningWheel isSpinning={isGenerating} min={min} max={max} />
+          <SpinningWheel isSpinning={isGenerating} min={min} max={max} generatedNumbers={numbers} />
 
           {/* Generate Button */}
           <button
