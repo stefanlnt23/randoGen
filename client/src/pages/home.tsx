@@ -1,3 +1,4 @@
+import { useState } from "react";
 import RandomNumberGenerator from "@/components/RandomNumberGenerator";
 
 export default function Home() {
@@ -45,7 +46,7 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="feature-card">
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center mb-4 hover:scale-110 transition-transform duration-300">
               <i className="fas fa-magic text-white text-xl"></i>
             </div>
             <h3 className="text-xl font-semibold mb-3">Beautiful Animations</h3>
@@ -55,7 +56,7 @@ export default function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mb-4 hover:scale-110 transition-transform duration-300">
               <i className="fas fa-shield-alt text-white text-xl"></i>
             </div>
             <h3 className="text-xl font-semibold mb-3">True Randomness</h3>
@@ -65,7 +66,7 @@ export default function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-4 hover:scale-110 transition-transform duration-300">
               <i className="fas fa-mobile-alt text-white text-xl"></i>
             </div>
             <h3 className="text-xl font-semibold mb-3">Mobile Optimized</h3>
@@ -75,7 +76,7 @@ export default function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-xl flex items-center justify-center mb-4 hover:scale-110 transition-transform duration-300">
               <i className="fas fa-bolt text-white text-xl"></i>
             </div>
             <h3 className="text-xl font-semibold mb-3">Lightning Fast</h3>
@@ -85,7 +86,7 @@ export default function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mb-4 hover:scale-110 transition-transform duration-300">
               <i className="fas fa-cogs text-white text-xl"></i>
             </div>
             <h3 className="text-xl font-semibold mb-3">Highly Customizable</h3>
@@ -95,7 +96,7 @@ export default function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-4 hover:scale-110 transition-transform duration-300">
               <i className="fas fa-heart text-white text-xl"></i>
             </div>
             <h3 className="text-xl font-semibold mb-3">Completely Free</h3>
